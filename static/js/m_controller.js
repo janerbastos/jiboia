@@ -39,7 +39,7 @@ $('#form-modal').on('shown.bs.modal', function (event) {
 });
 
 
-function enable_button_end_save(url){
+function enable_button_and_save(url){
     $('form').attr('action', url);
     $('#btn-save').show();
 }

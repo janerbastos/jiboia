@@ -10,6 +10,15 @@
            aria-controls="#collapse_{{ item.id }}"
            data-target="#collapse_{{ item.id }}">{{item.nome|truncatechars:27}}
         </a>
+        
+        <div class="progress">
+			{% if item.workflow == 'concluido' %}
+			<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+			{% elif item.workflow != 'a-fazer' %}
+			<div class="progress-bar" role="progressbar" style="width: {{item.producao}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{item.producao}}%</div>
+			{% endif %}
+        </div>
+
     </li>
     <div class="collapse" id="collapse_{{ item.id }}" style="margin-bottom: 1em;">
         <div class="card-body" style="border: 1px #ddd solid;">
@@ -61,7 +70,14 @@
                     data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
                     data-modulo='acoes'
                     data-action="@@list-all"
-                    data-toggle="modal">Listar</a>&nbsp;
+                    data-toggle="modal">Listar</a><hr>
+        	Notas: <a href="#"
+					data-target="#form-modal"
+					data-titulo="{{ item.nome|truncatewords:7 }}"
+					data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
+					data-modulo='acoes'
+					data-action="@@list-all"
+					data-toggle="modal">Add</a>&nbsp;
         </div>
     </div>
     {% endfor %}
