@@ -31,8 +31,6 @@ class AtividadeStarForm(forms.ModelForm):
         labels ={
             'inicio_at': 'Início:',
             'termino_at': 'Temino:',
-            'inicio_at': 'Previsão para iniciar a atividade.',
-            'termino_at': 'Previsão para encerrar aa atividade.',
         }
         help_texts = {
             'inicio_at': 'Previsão para iniciar a atividade.',
