@@ -48,7 +48,7 @@ class Projeto(models.Model):
 
 class Atividade(models.Model):
     """
-    Essa classe representa as atividades de em um projeto.
+    Essa classe abstrai uma disciplina do pecesso de desenvolvimento em um projeto.
     possui um relacionamento de agregação com as class ações e que
     podem produzir uma serie de artefatos que contempla suas informções.
     """
@@ -85,7 +85,7 @@ class Atividade(models.Model):
 
 class Acao(models.Model):
     """
-    Essa class representa as ações tomadas por um atividade,
+    Essa class abstai uma tarrefa representa as ações tomadas por um atividade,
     """
     atividade = models.ForeignKey('Atividade',  on_delete=models.CASCADE, related_name='acoes_desta')
     nome = models.CharField(max_length=100)
