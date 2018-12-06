@@ -1,86 +1,59 @@
 {% if objects %}
 {% if opcao == 'atividades' %}
-<ul style="list-style: none; padding: 0;">
-    {% for item in objects %}
-    <li class="alert bg-white" style="border: 1px #ddd solid;">
-        <a href="#"
-           data-toggle="collapse"
-           title="{{ item.tolltip }}"
-           aria-expanded="false"
-           aria-controls="#collapse_{{ item.id }}"
-           data-target="#collapse_{{ item.id }}">{{item.nome|truncatechars:27}}
-        </a>
-        
-        <div class="progress">
-			{% if item.workflow == 'concluido' %}
-			<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-			{% elif item.workflow != 'a-fazer' %}
-			<div class="progress-bar" role="progressbar" style="width: {{item.producao}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{item.producao}}%</div>
-			{% endif %}
-        </div>
+<ul style="list-style: none; padding: 0;" id="ordenador">
+        {% for item in objects %}
+        <li class="alert bg-white" style="border: 1px #ddd solid;">
+                <a href="#" data-toggle="collapse" title="{{ item.tolltip }}" aria-expanded="false" aria-controls="#collapse_{{ item.id }}"
+                        data-target="#collapse_{{ item.id }}">{{item.nome|truncatechars:27}}
+                </a>
 
-    </li>
-    <div class="collapse" id="collapse_{{ item.id }}" style="margin-bottom: 1em;">
-        <div class="card-body" style="border: 1px #ddd solid;">
-            <p style="font-weight: bolder">{{ item.nome }}</p>
-            <p>{{item.descricao|truncatewords:10}}</p>
-    
-            {% if item.workflow == 'a-fazer' %}
-                <a href="#"
-                    data-target="#form-modal"
-                    data-titulo="{{ item.nome|truncatewords:7 }}"
-                    data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
-                    data-modulo='atividades'
-                    data-action="@@workflow"
-                    data-toggle="modal">Iniciar</a>&nbsp;
-            {% else %}
-                <a href="#"
-                    data-target="#form-modal"
-                    data-titulo="{{ item.nome|truncatewords:7 }}"
-                    data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
-                    data-modulo='atividades'
-                    data-action="@@workflow"
-                    data-toggle="modal">Workflow</a>&nbsp;
-                
-            {% endif %}
-            <a href="#"
-                    data-target="#form-modal"
-                    data-titulo="{{ item.nome|truncatewords:7 }}"
-                    data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
-                    data-modulo='atividades'
-                    data-action="@@update"
-                    data-toggle="modal">Editar</a>&nbsp;
-            <a href="#"
-                    data-target="#form-modal"
-                    data-titulo="{{ item.nome|truncatewords:7 }}"
-                    data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
-                    data-modulo='atividades'
-                    data-action="@@open-object"
-                    data-toggle="modal">Abrir</a><hr>
-            Ações: <a href="#"
-                    data-target="#form-modal"
-                    data-titulo="{{ item.nome|truncatewords:7 }}"
-                    data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
-                    data-modulo='acoes'
-                    data-action="@@create"
-                    data-toggle="modal">Add</a>&nbsp;
-            <a href="#"
-                    data-target="#form-modal"
-                    data-titulo="{{ item.nome|truncatewords:7 }}"
-                    data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
-                    data-modulo='acoes'
-                    data-action="@@list-all"
-                    data-toggle="modal">Listar</a><hr>
-        	Notas: <a href="#"
-					data-target="#form-modal"
-					data-titulo="{{ item.nome|truncatewords:7 }}"
-					data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
-					data-modulo='acoes'
-					data-action="@@list-all"
-					data-toggle="modal">Add</a>&nbsp;
-        </div>
-    </div>
-    {% endfor %}
+                <div class="progress">
+                        {% if item.workflow == 'concluido' %}
+                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100">100%</div>
+                        {% elif item.workflow != 'a-fazer' %}
+                        <div class="progress-bar" role="progressbar" style="width: {{item.producao}}%;" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100">{{item.producao}}%</div>
+                        {% endif %}
+                </div>
+
+
+                <div class="collapse" id="collapse_{{ item.id }}" style="margin-bottom: 1em;">
+                        <div class="card-body" style="border: 1px #ddd solid;">
+                                <p style="font-weight: bolder">{{ item.nome }}</p>
+                                <p>{{item.descricao|truncatewords:10}}</p>
+
+                                {% if item.workflow == 'a-fazer' %}
+                                <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
+                                        data-modulo='atividades' data-action="@@workflow" data-toggle="modal">Iniciar</a>&nbsp;
+                                {% else %}
+                                <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
+                                        data-modulo='atividades' data-action="@@workflow" data-toggle="modal">Workflow</a>&nbsp;
+
+                                {% endif %}
+                                <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
+                                        data-modulo='atividades' data-action="@@update" data-toggle="modal">Editar</a>&nbsp;
+                                <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}"
+                                        data-modulo='atividades' data-action="@@open-object" data-toggle="modal">Abrir</a>
+                                <hr>
+                                Ações: <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
+                                        data-modulo='acoes' data-action="@@create" data-toggle="modal">Add</a>&nbsp;
+                                <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
+                                        data-modulo='acoes' data-action="@@list-all" data-toggle="modal">Listar</a>
+                                <hr>
+                                Notas: <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
+                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
+                                        data-modulo='acoes' data-action="@@list-all" data-toggle="modal">Add</a>&nbsp;
+                        </div>
+                </div>
+        </li>
+        {% endfor %}
 </ul>
 {% endif %}
 {% endif %}

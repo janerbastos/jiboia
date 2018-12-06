@@ -9,6 +9,32 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <title>{{titulo}}</title>
+
+    <script src="{% static 'js/jquery/3.3.1/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/4.1.3/bootstrap.min.js' %}"></script>
+
+    <script type="application/javascript">
+        $(function () {
+            $("#ordenador").sortable({
+                axis: 'y',
+                opacity: 0.8,
+
+                update: function (event, ui) {
+                    var objects = $(this).sortable('toArray');
+                    console.log(ui);
+                },
+
+                over: function (event, ui) {
+                    console.log('over');
+                },
+
+                out: function (event, ui) {
+                    console.log('out');
+                },
+            });
+        });
+    </script>
 </head>
 
 <body style="margin-top: 2em;">
@@ -31,34 +57,29 @@
 
         <hr>
         <p style="font-weight: bold;">Minhas Ações.
-            <a href="#"
-                data-target="#form-modal"
-                data-titulo="Nova atividade"
-                data-url="{% url 'jiboia:atividades' projeto_id=objeto.id %}"
-                data-modulo='atividades'
-                data-action="@@create"
-                data-toggle="modal">Nova Atividade</a>
+            <a href="#" data-target="#form-modal" data-titulo="Nova atividade" data-url="{% url 'jiboia:atividades' projeto_id=objeto.id %}"
+                data-modulo='atividades' data-action="@@create" data-toggle="modal">Nova Atividade</a>
         </p>
         <div class="row">
-            <div class="col-sm " style="padding-top: 1em; border-right: 1px #dddddd solid;">
+            <div class="col-sm " id="aguardando" style="padding-top: 1em; border-right: 1px #dddddd solid;">
                 <div class="alert alert-primary" role="alert">
-                    A Fazer
+                    Aguardando
                 </div>
                 {{objeto|atividades}}
             </div>
-            <div class="col-sm " style="padding-top: 1em; border-right: 1px #dddddd solid;">
+            <div class="col-sm " id="desenvolvimento" style="padding-top: 1em; border-right: 1px #dddddd solid;">
                 <div class="alert alert-secondary" role="alert">
                     Desenvolvendo
                 </div>
                 {{objeto|atividades:'desenvolvimento'}}
             </div>
-            <div class="col-sm" style="padding-top: 1em; border-right: 1px #dddddd solid;">
+            <div class="col-sm" id="concuido" style="padding-top: 1em; border-right: 1px #dddddd solid;">
                 <div class="alert alert-success" role="alert">
                     Concluido
                 </div>
                 {{objeto|atividades:'concluido'}}
             </div>
-            <div class="col-sm" style="padding-top: 1em;">
+            <div class="col-sm" style="padding-top: 1em;" id="cancelado">
                 <div class="alert alert-danger" role="alert">
                     Cancelado
                 </div>
@@ -71,10 +92,10 @@
         {% include 'jiboia_layout/componentes/includes/form_modal.html' %}
 
     </div>
-    <script src="{% static 'js/jquery/3.3.1/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap/4.1.3/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/ajax.js' %}" ></script>
-    <script src="{% static 'js/m_controller.js' %}" ></script>
+
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script src="{% static 'js/m_controller.js' %}"></script>
 
 </body>
+
 </html>
