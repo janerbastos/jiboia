@@ -3,6 +3,7 @@
 from jiboia.negocio.projeto_negocio import ProjetoNegocio
 from jiboia.negocio.atividade_negocio import AtividadeNegocio
 from jiboia.negocio.acao_negocio import AcaoNegocio
+from jiboia.negocio.nota_negocio import NotaNegocio
 
 class Processador():
 
@@ -14,11 +15,16 @@ class Processador():
     @staticmethod
     def __methodo(**kwargs):
         
+        projeto_id = kwargs.get('projeto_id', None)
+        atividade_id = kwargs.get('atividade_id', None)
+        acao_id = kwargs.get('acao_id', None)
+        nota_id = kwargs.get('nota_id', None)
+        
         methodo = {
-            'projeto': ProjetoNegocio(kwargs.get('projeto_id', None)),
-            'atividade': AtividadeNegocio(kwargs.get('projeto_id', None), kwargs.get('atividade_id', None)),
-            'nota': "NotaNegocio(kwargs.get('projeto_id', None), kwargs.get('atividade_id', None), kwargs.get('nota_id'))",
-            'acao': AcaoNegocio(kwargs.get('projeto_id', None), kwargs.get('atividade_id', None), kwargs.get('acao_id'))
+            'projeto': ProjetoNegocio(projeto_id),
+            'atividade': AtividadeNegocio(projeto_id, atividade_id),
+            'acao': AcaoNegocio(projeto_id, atividade_id, acao_id),
+            'nota': NotaNegocio(projeto_id, atividade_id, nota_id)
         }
 
         return methodo

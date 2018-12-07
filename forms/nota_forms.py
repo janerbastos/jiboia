@@ -10,6 +10,6 @@ class NotaForm(forms.ModelForm):
         fields = ['nota', 'status']
         labels = {
             'nota': 'Conteúdo',
-            'status': 'Executada' 
+            'status': 'Processada' 
         }
 

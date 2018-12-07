@@ -55,25 +55,27 @@
                                         data-modulo='atividades' data-action="@@open-object" data-toggle="modal">
                                         <span class="badge badge-primary">Abrir</span></a>
                                 <hr>
-                                <span style="font-size: 75%; font-weight: bold;">Tarefas:</span><br>
+                                <span style="font-size: 75%; font-weight: bold;">Tarefas&nbsp;-&nbsp;<span class="badge badge-secondary">{{item.acoes_desta.count}}</span></span><br>
                                 <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
-                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
+                                        data-url="{% url 'jiboia:acoes' projeto_id=item.projeto.id atividade_id=item.id %}"
                                         data-modulo='acoes' data-action="@@create" data-toggle="modal">
                                         <span class="badge badge-danger">Nova tarefa</span></a>&nbsp;
                                 <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
-                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
+                                        data-url="{% url 'jiboia:acoes' projeto_id=item.projeto.id atividade_id=item.id %}"
                                         data-modulo='acoes' data-action="@@list-all" data-toggle="modal">
                                         <span class="badge badge-danger">Listar</span></a>
                                 <hr>
-                                <span style="font-size: 75%; font-weight: bold;">Notas:</span><br>
+                                <span style="font-size: 75%; font-weight: bold;">Notas&nbsp;-&nbsp;<span class="badge badge-secondary">{{item.notas.count}}</span></span><br>
                                 <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
-                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
-                                        data-modulo='acoes' data-action="@@list-all" data-toggle="modal">
+                                        data-url="{% url 'jiboia:notas' item.projeto.id item.id %}"
+                                        data-modulo='notas' data-action="@@create" data-toggle="modal">
                                         <span class="badge badge-warning">Nova nota</span></a>&nbsp;
                                 <a href="#" data-target="#form-modal" data-titulo="{{ item.nome|truncatewords:7 }}"
-                                        data-url="{% url 'jiboia:atividades' projeto_id=item.projeto.id atividade_id=item.id %}acoes/"
-                                        data-modulo='acoes' data-action="@@list-all" data-toggle="modal">
+                                        data-url="{% url 'jiboia:notas' projeto_id=item.projeto.id atividade_id=item.id %}"
+                                        data-modulo='notas' data-action="@@list-all" data-toggle="modal">
                                         <span class="badge badge-warning">Listar</span></a>
+                                
+                                
                         </div>
                 </div>
         </li>

@@ -25,4 +25,10 @@ def acoes(request, projeto_id, atividade_id, acao_id=None):
     return Processador.controller(request, modulo='acao', operador=operador,
                                     projeto_id=projeto_id, atividade_id=atividade_id, acao_id=acao_id)
 
+
+def notas(request, projeto_id, atividade_id, nota_id=None):
+    operador = request.GET.get('action', '@@create')
+    return Processador.controller(request, modulo='nota', operador=operador,
+                                    projeto_id=projeto_id, atividade_id=atividade_id, nota_id=nota_id)
+
     

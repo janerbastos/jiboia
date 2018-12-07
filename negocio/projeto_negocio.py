@@ -12,7 +12,7 @@ from jiboia.utils import contexto
 
 class ProjetoNegocio(Abstract):
 
-    template = 'jiboia_layout/index.html'
+    template = 'jiboia/index.html'
 
     def __init__(self, projeto_id=None):
         self.projeto_id = projeto_id

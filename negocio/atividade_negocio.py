@@ -14,7 +14,7 @@ from jiboia.utils import contexto
 
 class AtividadeNegocio(Abstract):
 
-    template = 'jiboia_layout/index.html'
+    template = 'jiboia/index.html'
 
     def __init__(self, projeto_id, atividade_id):
         self.projeto_id = projeto_id
@@ -41,7 +41,7 @@ class AtividadeNegocio(Abstract):
             is_save = True
         
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
             data = {
                 'result': html_string,
             }
@@ -62,7 +62,7 @@ class AtividadeNegocio(Abstract):
         is_save = False
 
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
             data = {
                 'result': html_string,
             }
@@ -86,7 +86,7 @@ class AtividadeNegocio(Abstract):
         
         if request.is_ajax():
             acoes = atividade.acoes_desta.all()
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'object': atividade, 'acoes': acoes, 'opcao':'view-atividade'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'object': atividade, 'acoes': acoes, 'opcao':'view-atividade'})
             data = {
                 'result': html_string,
             }
@@ -103,7 +103,7 @@ class AtividadeNegocio(Abstract):
         form = AtividadeStarForm(request.POST or None, instance=atividade)
 
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
             data = {
                 'result': html_string,
             }
@@ -134,7 +134,7 @@ class AtividadeNegocio(Abstract):
         
 
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'object': atividade, 'opcao':'workflow'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'object': atividade, 'opcao':'workflow'})
             data = {
                 'result': html_string,
             }

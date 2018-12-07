@@ -14,4 +14,7 @@ urlpatterns = [
     
     path('projetos/<int:projeto_id>/atividades/<int:atividade_id>/acoes/', views.acoes, name='acoes'),
     path('projetos/<int:projeto_id>/atividades/<int:atividade_id>/acoes/<int:acao_id>/', views.acoes, name='acoes'),
+
+    path('projetos/<int:projeto_id>/atividades/<int:atividade_id>/notas/', views.notas, name='notas'),
+    path('projetos/<int:projeto_id>/atividades/<int:atividade_id>/notas/<int:nota_id>/', views.notas, name='notas'),
 ]

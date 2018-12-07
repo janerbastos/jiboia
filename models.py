@@ -82,7 +82,6 @@ class Atividade(models.Model):
         return ('%s') % round(total,0)
 
 
-
 class Acao(models.Model):
     """
     Essa class abstai uma tarrefa representa as ações tomadas por um atividade,
@@ -114,7 +113,6 @@ class Acao(models.Model):
         return '/jiboia/projetos/%s/atividades/%s/acoes/%s/' % (self.atividade.projeto.id, self.atividade.id, self.id)
 
 
-
 class Artefato(models.Model):
     """
     Essa classe representa um documento produzido durante as fazes do projeto
@@ -139,6 +137,12 @@ class BlocoNota(models.Model):
     criacao_at = models.DateTimeField(auto_created=True)
     status = models.BooleanField(default=False)
 
+    @property
+    def is_status(self):
+        if self.status:
+            return 'Processada'
+        else:
+            return 'Aguardando'
 
 #Classes de modelo de controle
 

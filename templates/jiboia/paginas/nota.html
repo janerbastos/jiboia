@@ -1,0 +1,26 @@
+{% load bootstrap %}
+
+{% if form %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    {% if action != 'ajax' %}
+    <input type="submit" name="btn_submit" id="btn-submit" class="btn btn-secondary">
+    {% endif %}
+</form>
+{% endif %}
+
+{% if objects %}
+
+<ul style="list-style: none;">
+    {% for item in objects %}
+    <li style="border-left: 2px solid #cdc; padding-left: 5px; margin-bottom: 5px;">
+        <span class="badge badge-danger">{{ item.is_status }}</span><br>
+        <a href="#"
+            onclick="run('{% url 'jiboia:notas' projeto_id atividade_id item.id %}?action=@@update',  {'action':'@@update'});
+                enable_button_and_save('{% url 'jiboia:notas' projeto_id atividade_id item.id %}?action=@@update')"
+                >{{ item.nota }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endif %}

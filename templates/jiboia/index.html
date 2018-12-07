@@ -35,57 +35,12 @@
 
 <body style="margin-top: 2em;">
     <div class="container">
-        <h2>{{ titulo }}</h2>
-        <hr>
+        <h2>{{ titulo }}</h2><hr>
         <p style="font-weight: bold;">{{ descricao }} </p>
 
-        {% if form %}
-        <form action="" , method="POST">
-            {% csrf_token %}
-            {{ form|bootstrap }}
-            <input type="submit" value="Save" class="btn btn-sm">
-        </form>
-        {% endif %}
+        {% include modulo|layout %}
 
-        {% if objeto %}
-
-        <p>Data da criação: <span><strong>{{ objeto.criacao_at}}</strong></span></p>
-
-        <hr>
-        <p style="font-weight: bold;">Minhas Ações.
-            <a href="#" data-target="#form-modal" data-titulo="Nova atividade" data-url="{% url 'jiboia:atividades' projeto_id=objeto.id %}"
-                data-modulo='atividades' data-action="@@create" data-toggle="modal">Nova Atividade</a>
-        </p>
-        <div class="row">
-            <div class="col-sm " id="aguardando" style="padding-top: 1em; border-right: 1px #dddddd solid;">
-                <div class="alert alert-primary" role="alert">
-                    Aguardando
-                </div>
-                {{objeto|atividades}}
-            </div>
-            <div class="col-sm " id="desenvolvimento" style="padding-top: 1em; border-right: 1px #dddddd solid;">
-                <div class="alert alert-secondary" role="alert">
-                    Fazendo
-                </div>
-                {{objeto|atividades:'desenvolvimento'}}
-            </div>
-            <div class="col-sm" id="concuido" style="padding-top: 1em; border-right: 1px #dddddd solid;">
-                <div class="alert alert-success" role="alert">
-                    Concluido
-                </div>
-                {{objeto|atividades:'concluido'}}
-            </div>
-            <div class="col-sm" style="padding-top: 1em;" id="cancelado">
-                <div class="alert alert-danger" role="alert">
-                    Cancelado
-                </div>
-                {{objeto|atividades:'cancelado'}}
-            </div>
-        </div>
-
-        {% endif %}
-
-        {% include 'jiboia_layout/componentes/includes/form_modal.html' %}
+        {% include 'jiboia/componentes/includes/form_modal.html' %}
 
     </div>
     <script src="{% static 'js/popper.min.js' %}"></script>

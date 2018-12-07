@@ -36,6 +36,18 @@ $('#form-modal').on('shown.bs.modal', function (event) {
         }
         run(url, param)
     }
+
+    if(modulo=='notas'){
+        if(action=='@@list-all'){
+            form.attr('action', url+'?action=@@update');
+        }else{
+            form.attr('action', url+'?action='+action);
+        }
+        param = {
+            'action': action
+        }
+        run(url, param)
+    }
 });
 
 

@@ -13,7 +13,7 @@ from jiboia.utils import contexto
 
 class AcaoNegocio(Abstract):
     
-    template = 'jiboia_layout/index.html'
+    template = 'jiboia/index.html'
 
 
     def __init__(self, projeto_id, atividade_id, acao_id=None):
@@ -42,7 +42,7 @@ class AcaoNegocio(Abstract):
             is_save = True
         
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
             data = {
                 'result': html_string,
             }
@@ -66,7 +66,7 @@ class AcaoNegocio(Abstract):
             is_save = True
         
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'form': form, 'opcao':'forms'})
             data = {
                 'result': html_string,
             }
@@ -88,7 +88,7 @@ class AcaoNegocio(Abstract):
         acoes = Acao.objects.filter(atividade=atividade)
 
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'objects':  acoes, 'opcao': 'acoes-atividade'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'objects':  acoes, 'opcao': 'acoes-atividade'})
             data = {
                 'result': html_string,
             }
@@ -102,7 +102,7 @@ class AcaoNegocio(Abstract):
         acao = self.get_object()
 
         if request.is_ajax():
-            html_string = render_to_string('jiboia_layout/componentes/aux_ajax_form.html', {'object':  acao, 'opcao': 'view-acao'})
+            html_string = render_to_string('jiboia/componentes/aux_ajax_form.html', {'object':  acao, 'opcao': 'view-acao'})
             data = {
                 'result': html_string,
             }

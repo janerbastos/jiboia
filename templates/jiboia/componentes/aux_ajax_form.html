@@ -25,33 +25,49 @@
 {% if opcao == 'view-atividade' %}
 <p style="font-weight: bold">{{object.descricao}}</p>
 <p><strong>Início:</strong>&nbsp;{{object.inicio_at|date:'d/m/Y'}}</p>
-<p><strong>Enderramento:</strong>&nbsp;{{object.termino_at|date:'d/m/Y'}}</p>
+<p><strong>Encerramento:</strong>&nbsp;{{object.termino_at|date:'d/m/Y'}}</p>
 <p><strong>Andamento da atividade:</strong>&nbsp;{{object.producao}}%</p>
-<p><strong>Fluxo de trabalho:</strong>&nbsp;{{object.get_workflow_display}}</p><hr>
-<p><strong>Minhas Açoes:</strong></p>
+<p><strong>Fluxo de trabalho:</strong>&nbsp;{{object.get_workflow_display}}</p>
+<hr>
+
+<p><strong>Tarefas:</strong></p>
 <ul>
     {% if acoes %}
-    {% for acao in acoes %}
-    <li>{{acao.is_status}} - {{acao.nome}}</li>
-    {% endfor %}
+        {% for acao in acoes %}
+            <li><span class="badge badge-warning">{{acao.is_status}}</span><br>{{acao.nome}}</li>
+        {% endfor %}
     {% else %}
-    <li>Nenhuma ação definida.</li>
+        <li>Nenhuma ação definida.</li>
     {% endif %}
 </ul>
+
+<p><strong>Notas:</strong></p>
+{% with notas=object.notas.all %}
+<ul>
+    {% if notas %}
+        {% for nota in notas %}
+            <li><span class="badge badge-warning">[{{nota.is_status}}]</span><br>{{nota.nota}}</li>
+        {% endfor %}
+    {% else %}
+        <li>Nenhuma nota definida.</li>
+    {% endif %}
+</ul>
+{% endwith %}
+</div>
 {% endif %}
 
 
 {% if opcao == 'acoes-atividade' %}
 <ul id="lista-acoes">
     {% for item in objects %}
-    <li>{{ item.is_status }}
+    <li><span class="badge badge-warning">{{ item.is_status }}</span><br>
         <a href="#" onclick="run(
         '{{item.get_absolute_url}}', {'action':'@@update'}
         ); enable_button_and_save(
         '{{item.get_absolute_url}}?action=@@update'
         )">
         <strong>{{item.nome}}</strong>
-    </a><br><i>{{item.descricao}}</i>
+        </a><br><i>{{item.descricao}}</i>
     </li>
     {% endfor %}
 </ul>
